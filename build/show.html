@@ -1,0 +1,8 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="css/styles.css"></head><body><h1>Show Past Records</h1><section></section><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script>$(function(){
+  $.ajax("get.php",{
+    type: "GET",
+    success: function(d){
+      console.log(d)
+    }
+  })
+})</script></body></html>

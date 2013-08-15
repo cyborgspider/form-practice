@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="css/styles.css"></head><body><h1>Let's make some form database insertions</h1><form action="insert.php" method="post"><input type="text" name="name"><textarea name="description"></textarea><input type="submit" value="Submit"></form><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script>$(function(){
+    f = $('form');
+    f.on('submit', function(e){
+      e.preventDefault();
+      $.ajax(f.attr('action'), {
+        type: f.attr('method'),
+        data: f.serialize(),
+        success: function(d){
+            f.remove();
+            $('h1').after('<p>'+d+'</p>');
+        },
+        error: function(){
+          $('h1').after("<p>Couldn't connect to the database. Please try again later once I figure out what the hell went wrong.</p>")
+        }
+      })
+    })
+})</script></body></html>
