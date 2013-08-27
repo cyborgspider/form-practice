@@ -6,13 +6,26 @@ html
     h1 Show Past Records
     section
 
+
     script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
     script
       $(function(){
         $.ajax("get.php",{
-          type: "GET",
-          success: function(d){
-            console.log(d)
+          contentType:"application/json",
+          dataType:"json",
+          success: function(data){
+            //Using Map instead of Each
+            //Map creates a new variable from the original data, 
+            //but it's a completely new array.
+            var returnedData = $.map(data, function(guestInfo, i){
+                var guestInfoDOM = $('<div>');
+                $('<h2>'+guestInfo.name+'</h2>').appendTo(guestInfoDOM);
+                $('<p>Number of guests: '+guestInfo.guests+'</p>').appendTo(guestInfoDOM);
+                $('<p>Names of guests: '+guestInfo.guest_names+'</p>').appendTo(guestInfoDOM);
+                return guestInfoDOM;
+              })
+
+            $('section').html(returnedData);
           }
         })
       })

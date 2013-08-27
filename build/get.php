@@ -1,20 +1,32 @@
 <?php
 $dbHost     = 'localhost';
 $dbUser     = 'root';
-$dbPassword = 'root';
-$dbDatabase = 'test';
-$tableName  = 'names';
+$dbPassword = 'test';
+$dbDatabase = 'wedding_guests';
 
-$con = mysqli_connect($dbHost, $dbUser, $dbPassword);
-$dbs = mysqli_select_db($dbDatabase, $con);
+$con = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbDatabase);
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-$result = mysql_query("SELECT * FROM $tableName");
-$array = mysql_fetch_row($result)
+$sql="SELECT name,guests,guest_names FROM guests";
+if ($result=mysqli_query($con,$sql))
+  {
+  // Fetch one and one row
+  while ($row=mysqli_fetch_row($result))
+    {
+    $results[] = array(
+      'name' => $row[0],
+      'guests' => $row[1],
+      'guest_names' => $row[2]
+     );    
+    }
+  // Free result set
+  $json = json_encode($results);
+}
+echo $json;
 
-echo json_encode($array);
 
+mysqli_close($con);
 ?>

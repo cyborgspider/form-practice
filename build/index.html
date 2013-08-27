@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="css/styles.css"></head><body><h1>Let's make some form database insertions</h1><form action="insert.php" method="post"><input type="text" name="name"><textarea name="description"></textarea><input type="submit" value="Submit"></form><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script>$(function(){
+<!DOCTYPE html><html><head><link rel="stylesheet" href="css/styles.css"></head><body><h1>Let's make some form database insertions</h1><form action="insert.php" method="post"><input type="text" name="name"><select name="guests"><option>1</option><option>2</option><option>3</option></select><input name="guest_names"><input type="submit" value="Submit"></form><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script>$(function(){
     f = $('form');
     f.on('submit', function(e){
       e.preventDefault();
